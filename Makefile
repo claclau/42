@@ -6,7 +6,7 @@
 #    By: claclau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 17:03:28 by claclau           #+#    #+#              #
-#    Updated: 2022/02/04 16:19:20 by claclau          ###   ########.fr        #
+#    Updated: 2022/02/04 17:31:15 by claclau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstadd_back.c ft_lstdelone
 
 BONUS_OBJS = $(BONUS:.c=.o)
 
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror
 INC = libft.h
 

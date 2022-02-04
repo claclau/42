@@ -6,7 +6,7 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:30:46 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/03 16:30:48 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/04 17:33:12 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ char	**ft_split(char const *s, char c)
 			return (NULL);
 		i++;
 	}
-	split_str[i] = '\0';
+	split_str[i] = NULL;
 	return (ft_split2(s, c, split_str));
 }

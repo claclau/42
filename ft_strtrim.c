@@ -6,11 +6,12 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:34:41 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/02 17:21:09 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/04 21:20:44 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	ft_is_in_charset(char c, char const *set)
 {
@@ -65,6 +66,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	signed long	i;
 	signed long	j;
 
+	if (ft_last_nonset_index(s1, set) == -1)
+		return ("");
 	trimmed_str = malloc(sizeof(char)
 			* (ft_strlen(s1) - ft_count_to_trim(s1, set) + 1));
 	if (!trimmed_str || !s1)

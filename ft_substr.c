@@ -6,7 +6,7 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:30:11 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/03 16:30:13 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/04 20:41:10 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
+	if (start > ft_strlen(s))
+		return ("");
 	substr = malloc(sizeof(char) * (len + 1));
 	if (substr == NULL)
 		return (NULL);

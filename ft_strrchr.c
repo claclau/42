@@ -6,12 +6,11 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 11:50:32 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/04 18:28:35 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/04 18:49:22 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_strrchr(const char *s, int c)
 {
@@ -22,12 +21,8 @@ char	*ft_strrchr(const char *s, int c)
 	res = -1;
 	while (s[i])
 	{
-		printf("c = %c\n", c);
-		if (s[i] == c)
-		{
-			printf("i = %d\n", i);
+		if (s[i] == (char)c)
 			res = i;
-		}
 		i++;
 	}
 	if (res != -1)

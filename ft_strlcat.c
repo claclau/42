@@ -6,7 +6,7 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 15:31:58 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/02 16:25:05 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/04 21:28:40 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		i++;
 	}
 	dst[i + dst_len] = '\0';
-	if (i > size)
+	if (dst_len > size)
 		return (size + ft_strlen(src));
 	return (dst_len + ft_strlen(src));
 }

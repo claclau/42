@@ -6,12 +6,11 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:14:24 by claclau           #+#    #+#             */
-/*   Updated: 2021/12/10 17:39:14 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/03 16:50:08 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 #include <stdio.h>
 
 t_list	*ft_lstnew(void	*content);

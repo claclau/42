@@ -6,12 +6,11 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:34:41 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/04 21:20:44 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/04 23:37:07 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	ft_is_in_charset(char c, char const *set)
 {

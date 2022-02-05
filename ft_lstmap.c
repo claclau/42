@@ -6,29 +6,26 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:56:24 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/03 16:59:01 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/05 11:17:26 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdio.h>
-
-/*
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_list;
-	
+
 	new_list = ft_lstnew(NULL);
 	if (lst && f)
 	{
 		new_list->content = f(lst->content);
-		new_list->next = ft_lstmap(lst->next, f);
+		new_list->next = ft_lstmap(lst->next, f, del);
 		return (new_list);
 	}
 	return (NULL);
-}*/
-
+}
+/*
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *))
 {
 	t_list	*new_list;
@@ -47,4 +44,4 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *))
 		}
 	}
 	return (new_list);
-}
+}*/

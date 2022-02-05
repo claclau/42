@@ -6,12 +6,11 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:48:01 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/04 21:45:02 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/04 23:36:10 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 /*
 char	*ft_strnstr(const char *big, const char *little, size_t len)

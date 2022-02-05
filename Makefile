@@ -6,7 +6,7 @@
 #    By: claclau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 17:03:28 by claclau           #+#    #+#              #
-#    Updated: 2022/02/04 23:09:39 by claclau          ###   ########.fr        #
+#    Updated: 2022/02/05 11:27:55 by claclau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen
 
 OBJS = $(SRC:.c=.o)
 
-BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstadd_back.c ft_lstdelone.c\
-	ft_lstclear.c ft_lstiter.c ft_lstmap.c
+BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c\
+	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 BONUS_OBJS = $(BONUS:.c=.o)
 
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INC = libft.h
 

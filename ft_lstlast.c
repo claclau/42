@@ -6,7 +6,7 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:54:05 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/03 16:54:08 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/05 11:33:11 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
+	if (!lst)
+		return (0);
 	while (lst->next)
 		lst = lst->next;
 	return (lst);

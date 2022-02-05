@@ -6,7 +6,7 @@
 #    By: claclau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 17:03:28 by claclau           #+#    #+#              #
-#    Updated: 2022/02/05 16:29:34 by claclau          ###   ########.fr        #
+#    Updated: 2022/02/05 18:31:58 by claclau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,14 @@ INC = libft.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(INC)
-	$(CC) $(CFLAGS) -c $(SRC)
-	ar cr $(NAME) $(OBJS)
+%.o : %.c	
+	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus: $(BONUS_OBJS) $(INC)
-	$(CC) $(CFLAGS) -c $(BONUS)
-	ar cr $(NAME) $(BONUS_OBJS)
+$(NAME): $(OBJS) $(INC)
+	ar crs $(NAME) $(OBJS)
+
+bonus: $(OBJS) $(BONUS_OBJS) $(INC)
+	ar crs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 clean:
 	rm -rfv $(OBJS) $(BONUS_OBJS)
@@ -48,9 +49,9 @@ fclean: clean
 
 re: fclean all
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJS)
+
 norme:
 	norminette $(SRC) $(BONUS) $(INC)
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC) $(BONUS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)

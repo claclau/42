@@ -6,15 +6,15 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:30:46 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/05 16:31:18 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/05 17:53:49 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 #include <unistd.h>
-//static 
-unsigned int	ft_nb_words(char const *s, char c)
+
+static unsigned int	ft_nb_words(char const *s, char c)
 {
 	unsigned int	i;
 	unsigned int	nb_words;

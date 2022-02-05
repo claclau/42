@@ -6,7 +6,7 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:34:41 by claclau           #+#    #+#             */
-/*   Updated: 2022/02/04 23:37:07 by claclau          ###   ########.fr       */
+/*   Updated: 2022/02/05 15:41:41 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	signed long	j;
 
 	if (ft_last_nonset_index(s1, set) == -1)
-		return ("");
+		return (ft_strdup(""));
 	trimmed_str = malloc(sizeof(char)
 			* (ft_strlen(s1) - ft_count_to_trim(s1, set) + 1));
 	if (!trimmed_str || !s1)

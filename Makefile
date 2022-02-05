@@ -6,7 +6,7 @@
 #    By: claclau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 17:03:28 by claclau           #+#    #+#              #
-#    Updated: 2022/02/05 11:27:55 by claclau          ###   ########.fr        #
+#    Updated: 2022/02/05 16:29:34 by claclau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,4 +49,8 @@ fclean: clean
 re: fclean all
 
 norme:
-	norminette $(SRC) $(BONUS)
+	norminette $(SRC) $(BONUS) $(INC)
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC) $(BONUS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)

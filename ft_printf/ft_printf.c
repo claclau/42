@@ -120,7 +120,7 @@ int	ft_printf(const char *format, ...)
 
 			// %p -----------------------------------------------------------------
 
-			if (format[i] =='p')
+/*			if (format[i] =='p')
 			{
 				void	*ptr_value;
 				ptr_value = (void *)va_arg(to_print, void *);
@@ -134,12 +134,19 @@ int	ft_printf(const char *format, ...)
 					j--;
 				}
 			}
+			*/
+			if (format[i] == 'p')
+			{
+				uintptr_t	ptr_value;
+				ptr_value = (uintptr_t)va_arg(to_print, uintptr_t);
+				ft_putnbr_base_fd(ptr_value, "0123456789abcdef", 1);
+			}
 			
 
 			// %d ----------------------------------------------------------------
 			// nombre "decimal" ??? %d pour moi c'est un signed int
 
-			if (format[i] == 'd')
+			if ((format[i] == 'd') || (format[i] == 'i'))
 			{
 				
 				int	int_value;
@@ -147,10 +154,6 @@ int	ft_printf(const char *format, ...)
 				ft_putnbr_fd(int_value, 1);
 			}
 
-
-			// %i -----------------------------------------------------------------
-			// je vois pas la diff avec %d
-			
 
 			// %u -----------------------------------------------------------------
 
@@ -212,9 +215,6 @@ int	main(void)
 	int	*ptr = &d;
         printf("printf : %p\n", ptr);
         ft_printf("mine : %p\n", ptr);
-// d = 4
-// c = 1
-//
 
 	return (0);
 }

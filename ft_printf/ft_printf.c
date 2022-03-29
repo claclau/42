@@ -25,7 +25,7 @@ void    ft_putnbr_fd(int n, int fd)
         if (n == -2147483648)
         {
                 ft_putstr_fd("-2147483648", fd);
-                return ;
+                return;
         }
         if (n < 0)
         {
@@ -38,7 +38,9 @@ void    ft_putnbr_fd(int n, int fd)
                 ft_putnbr_fd(n % 10, fd);
         }
         if (n < 10)
+	{
                 ft_putchar_fd(n + 48, fd);
+	}
 }
 
 void	ft_putunbr_fd(unsigned int n, int fd)
@@ -52,7 +54,7 @@ void	ft_putunbr_fd(unsigned int n, int fd)
 		ft_putchar_fd(n + 48, fd);	
 }
 
-void    ft_putnbr_base_fd(int n, char	*base, int fd)
+void    ft_putnbr_base_fd(long long int n, char	*base, int fd)
 {
 	int	len_base;
 
@@ -76,6 +78,25 @@ void    ft_putnbr_base_fd(int n, char	*base, int fd)
                 ft_putchar_fd(base[n], fd);
 }
 
+unsigned int	ft_int_len(int n)
+{
+	unsigned int	len;
+
+	len = 0;
+	if (n == -2147483648)
+		return (11);
+	if (n <= 0)
+	{	
+		n = -n;
+		len++;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,11 +104,13 @@ void    ft_putnbr_base_fd(int n, char	*base, int fd)
 
 int	ft_printf(const char *format, ...)
 {
-	int	i;
-	va_list	to_print;
+	int		i;
+	va_list		to_print;
+	unsigned int	nb_char_printed;
 
 	i = 0;
 	va_start(to_print, format);
+	nb_char_printed = 0;
 	
 	while (format[i]) // we're gonna print the given string until we find a %something
 	{
@@ -105,16 +128,18 @@ int	ft_printf(const char *format, ...)
 				char	char_value;
 				char_value = (char)va_arg(to_print, int);
 				write(1, &char_value, 1);
+				nb_char_printed++;
 			}
 		
 			
 			// %s ----------------------------------------------------------------
 			
-			if (format[i] == 's')
+			else if (format[i] == 's')
 			{
 				char	*str_value;
 				str_value = (char *)va_arg(to_print, char*);
 				write(1, str_value, strlen(str_value));
+				nb_char_printed += strlen(str_value);
 			}
 
 
@@ -135,66 +160,71 @@ int	ft_printf(const char *format, ...)
 				}
 			}
 			*/
-			if (format[i] == 'p')
+			else if (format[i] == 'p')
 			{
 				uintptr_t	ptr_value;
 				ptr_value = (uintptr_t)va_arg(to_print, uintptr_t);
-				ft_putnbr_base_fd(ptr_value, "0123456789abcdef", 1);
+				write(1, "0x", 2);
+				ft_putnbr_base_fd((long long int)ptr_value, "0123456789abcdef", 1);
+				nb_char_printed += 14;
 			}
 			
 
 			// %d ----------------------------------------------------------------
-			// nombre "decimal" ??? %d pour moi c'est un signed int
 
-			if ((format[i] == 'd') || (format[i] == 'i'))
+			else if ((format[i] == 'd') || (format[i] == 'i'))
 			{
 				
 				int	int_value;
 				int_value = va_arg(to_print, int);
 				ft_putnbr_fd(int_value, 1);
+				nb_char_printed += ft_int_len(int_value);
 			}
 
 
 			// %u -----------------------------------------------------------------
 
-			if (format[i] == 'u')
+			else if (format[i] == 'u')
 			{
 				unsigned int	uint_value;
 				uint_value = va_arg(to_print, unsigned int);
 				ft_putunbr_fd(uint_value, 1);
-
+				nb_char_printed += ft_int_len(uint_value);
 			}
 			
 
 			// %x -----------------------------------------------------------------
 
-			if (format[i] == 'x')
+			else if (format[i] == 'x')
 			{
-				int	int_value2;
-				int_value2 = va_arg(to_print, int);
+				long long int	int_value2;
+				int_value2 = va_arg(to_print, long long int);
 				ft_putnbr_base_fd(int_value2, "0123456789abcdef", 1);
-
 			}
-			// probleme : printf ne gere pas les nombres negatifs, ma fonction si
 
 
 			// %X -----------------------------------------------------------------
 
-                        if (format[i] == 'X')
+			else if (format[i] == 'X')
                         {
-                                int     int_value3;
-                                int_value3 = va_arg(to_print, int);
+                                long long int     int_value3;
+                                int_value3 = va_arg(to_print, long long int);
                                 ft_putnbr_base_fd(int_value3, "0123456789ABCDEF", 1);
 
                         }
-                        // probleme : printf ne gere pas les nombres negatifs, ma fonction si
 
 
 			// %% ----------------------------------------------------------------
 
-			if (format[i] == '%')
+			else if (format[i] == '%')
 			{
 				ft_putchar_fd('%', 1);
+				nb_char_printed++;
+			}
+			else /// voir si on garde
+			{
+				write(1, "%", 1);
+				write(1, &format[i], 1);
 			}
 			i++;
 
@@ -206,15 +236,25 @@ int	ft_printf(const char *format, ...)
 		}
 	}
 	va_end(to_print);
-	return (i);
+	return (i + nb_char_printed);
 }
 
 int	main(void)
 {
-	int	d = 42;
-	int	*ptr = &d;
-        printf("printf : %p\n", ptr);
-        ft_printf("mine : %p\n", ptr);
+	int	ret = printf("Hello\n");
+        int	myret = ft_printf("Hello\n");
+	printf("ret : %d\nmyret : %d\n", ret, myret);
 
 	return (0);
 }
+
+// probleme : si je specifie un %someth avec someth pris en charge par printf et pas par ft_printf
+//
+// si je demande un %x ou %X et donne une string ou un pointeur, j'ai maintenant trop d'infos
+// si je demande un %s et ne donne pas une string, segfault mais la mienne ecrit quand meme ce qu'il y a avant le %s
+//
+// sur la valeur de retour de ft_printf, avec %u
+//
+//
+//
+// a faire : valeur de retour %x et %X

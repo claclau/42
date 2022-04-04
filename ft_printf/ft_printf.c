@@ -6,6 +6,7 @@
 
 #include <unistd.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 void    ft_putchar_fd(char c, int fd)
 {
@@ -17,6 +18,16 @@ void    ft_putstr_fd(char *s, int fd)
         if (!s)
                 return ;
         write(fd, s, strlen(s));
+}
+
+void    ft_putstr_rev_fd(char *s, int fd)
+{
+        unsigned int    i;
+        i = strlen(s);
+        if (!s)
+                return ;
+        while (i-- > 0)
+                write(fd, &s[i], 1);
 }
 
 
@@ -54,6 +65,50 @@ void	ft_putunbr_fd(unsigned int n, int fd)
 		ft_putchar_fd(n + 48, fd);	
 }
 
+unsigned int    put_nbr(int n)
+{       
+        char    *rev_nbr;
+        unsigned int    i;
+        int     neg;
+
+	rev_nbr = malloc(sizeof(char) * (11 + 1));
+        if (!rev_nbr)
+                return (0);
+        i = 0;
+	neg = 0;
+
+        if (n == -2147483648)
+        {
+                write(1, "-2147483648", 11);
+                free(rev_nbr);
+                return (11);
+        }
+        if (n < 0)
+        {
+                write(1, "-", 1);
+                neg = 1;
+                n = -n;
+        }
+        if (n == 0)
+        {
+                write(1, "0", 1);
+                i++;
+                free(rev_nbr);
+                return (i);
+        }
+        while (n > 0)
+        {
+                rev_nbr[i] = n % 10 + 48;
+                n /= 10;
+                i++;
+        }
+        rev_nbr[i] = '\0';
+        ft_putstr_rev_fd(rev_nbr, 1);
+        free(rev_nbr);
+        return (i + neg);
+
+}
+
 void    ft_putnbr_base_fd(long long int n, char	*base, int fd)
 {
 	int	len_base;
@@ -78,6 +133,52 @@ void    ft_putnbr_base_fd(long long int n, char	*base, int fd)
                 ft_putchar_fd(base[n], fd);
 }
 
+unsigned int    put_nbr_base_fd(long long int n, char *base, int fd)
+{
+        int     len_base;
+        char    *rev_nbr;
+        unsigned int    i;
+        int     neg;
+
+        len_base = strlen(base);
+        rev_nbr = malloc(sizeof(char) * (11 + 1));
+        if (!rev_nbr)
+                return (0);
+        i = 0;
+        neg = 0;
+
+//        if (n == -2147483648)
+//        {
+//              write(1, "-2147483648", 11);
+//                free(rev_nbr);
+//                return (11);
+//        }
+        if (n < 0)
+        {
+                write(1, "-", 1);
+                neg = 1;
+                n = -n;
+        }
+//        if (n == 0)
+//        {
+//                write(1, "0", 1);
+//                i++;
+//                free(rev_nbr);
+//                return (i);
+//        }
+        while (n > 0)
+        {
+                rev_nbr[i] = base[n % len_base];
+                n /= len_base;
+                i++;
+        }
+        rev_nbr[i] = '\0';
+        ft_putstr_rev_fd(rev_nbr, 1);
+        free(rev_nbr);
+        return (i + neg);
+
+}
+
 unsigned int	ft_int_len(int n)
 {
 	unsigned int	len;
@@ -98,6 +199,18 @@ unsigned int	ft_int_len(int n)
 	return (len);
 }
 
+unsigned int    ft_uint_len(unsigned int n)
+{
+        unsigned int    len;
+
+        len = 0;
+        while (n > 0)
+        {
+                n /= 10;
+                len++;
+        }
+        return (len);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,21 +220,20 @@ int	ft_printf(const char *format, ...)
 	int		i;
 	va_list		to_print;
 	unsigned int	nb_char_printed;
+	unsigned int	nb_arg;
 
 	i = 0;
 	va_start(to_print, format);
 	nb_char_printed = 0;
+	nb_arg = 0;
 	
-	while (format[i]) // we're gonna print the given string until we find a %something
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
+			nb_arg++;
 
-			// Depending on what %smth we have we should make several cases
-
-
-			// %c -----------------------------------------------------------------
 
 			if (format[i] == 'c')
 			{
@@ -132,8 +244,6 @@ int	ft_printf(const char *format, ...)
 			}
 		
 			
-			// %s ----------------------------------------------------------------
-			
 			else if (format[i] == 's')
 			{
 				char	*str_value;
@@ -142,8 +252,6 @@ int	ft_printf(const char *format, ...)
 				nb_char_printed += strlen(str_value);
 			}
 
-
-			// %p -----------------------------------------------------------------
 
 /*			if (format[i] =='p')
 			{
@@ -170,51 +278,44 @@ int	ft_printf(const char *format, ...)
 			}
 			
 
-			// %d ----------------------------------------------------------------
-
 			else if ((format[i] == 'd') || (format[i] == 'i'))
 			{
 				
 				int	int_value;
 				int_value = va_arg(to_print, int);
-				ft_putnbr_fd(int_value, 1);
-				nb_char_printed += ft_int_len(int_value);
+				nb_char_printed += put_nbr(int_value);
+				//nb_char_printed += ft_int_len(int_value);
 			}
 
-
-			// %u -----------------------------------------------------------------
 
 			else if (format[i] == 'u')
 			{
 				unsigned int	uint_value;
 				uint_value = va_arg(to_print, unsigned int);
 				ft_putunbr_fd(uint_value, 1);
-				nb_char_printed += ft_int_len(uint_value);
+				nb_char_printed += ft_uint_len(uint_value);
+				printf("uint_len : %u\n", ft_uint_len(uint_value));
 			}
 			
-
-			// %x -----------------------------------------------------------------
 
 			else if (format[i] == 'x')
 			{
 				long long int	int_value2;
 				int_value2 = va_arg(to_print, long long int);
-				ft_putnbr_base_fd(int_value2, "0123456789abcdef", 1);
+				nb_char_printed += put_nbr_base_fd(int_value2, "0123456789abcdef", 1);
+				//ft_putnbr_base_fd(int_value2, "0123456789abcdef", 1);
 			}
 
-
-			// %X -----------------------------------------------------------------
 
 			else if (format[i] == 'X')
                         {
                                 long long int     int_value3;
                                 int_value3 = va_arg(to_print, long long int);
-                                ft_putnbr_base_fd(int_value3, "0123456789ABCDEF", 1);
+				nb_char_printed += put_nbr_base_fd(int_value3, "0123456789ABCDEF", 1);
+                                //ft_putnbr_base_fd(int_value3, "0123456789ABCDEF", 1);
 
                         }
 
-
-			// %% ----------------------------------------------------------------
 
 			else if (format[i] == '%')
 			{
@@ -236,13 +337,14 @@ int	ft_printf(const char *format, ...)
 		}
 	}
 	va_end(to_print);
-	return (i + nb_char_printed);
+	return (i + nb_char_printed - nb_arg * 2);
 }
 
 int	main(void)
 {
-	int	ret = printf("Hello\n");
-        int	myret = ft_printf("Hello\n");
+	int	d = 789654;
+	int	ret = printf("Hello %X\n", d);
+        int	myret = ft_printf("Hello %X\n", d);
 	printf("ret : %d\nmyret : %d\n", ret, myret);
 
 	return (0);
@@ -252,9 +354,6 @@ int	main(void)
 //
 // si je demande un %x ou %X et donne une string ou un pointeur, j'ai maintenant trop d'infos
 // si je demande un %s et ne donne pas une string, segfault mais la mienne ecrit quand meme ce qu'il y a avant le %s
-//
-// sur la valeur de retour de ft_printf, avec %u
-//
 //
 //
 // a faire : valeur de retour %x et %X

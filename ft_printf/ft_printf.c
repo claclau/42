@@ -1,25 +1,4 @@
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <inttypes.h>
-
-
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
-
-#include "../libft/libft.h"
-
-unsigned int	ft_int_len(int n);
-unsigned int	ft_uint_len(unsigned int n);
-unsigned int    ft_decint_len_base(long long int n, char *base); //remplace les deux du dessus ?
-
-void		ft_putunbr_fd(unsigned int n, int fd);
-
-void    ft_putnbr_base_fd(long long int n, char	*base, int fd); //remplacerait aussi celle du dessus
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#include "ft_printf.h"
 
 
 int	ft_printf(const char *format, ...)
@@ -55,8 +34,8 @@ int	ft_printf(const char *format, ...)
 			{
 				char	*str_value;
 				str_value = (char *)va_arg(to_print, char*);
-				write(1, str_value, strlen(str_value));
-				nb_char_printed += strlen(str_value);
+				write(1, str_value, ft_strlen(str_value));
+				nb_char_printed += ft_strlen(str_value);
 			}
 
 

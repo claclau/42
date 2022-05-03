@@ -76,7 +76,7 @@ int     main(void)
 */
 
         // %p
-/*        
+        
         printf("--- %%p ---\n\n");
 
 	char	p1 = 'c';
@@ -85,27 +85,27 @@ int     main(void)
 	int	*p4 = &p3;
 	unsigned int p5 = 42;
 
-        ret = printf("%p\n", p1);
-        myret = ft_printf("%p\n", p1);
-        printf("ret : %d\nmyret : %d\n\n", ret, myret);
+//        ret = printf("%p\n", p1);
+//        myret = ft_printf("%p\n", p1);
+//        printf("ret : %d\nmyret : %d\n\n", ret, myret);
 
 
         ret = printf("%p\n", p2);
         myret = ft_printf("%p\n", p2);
         printf("ret : %d\nmyret : %d\n\n", ret, myret);
 
-        ret = printf("%p\n", p3);
-        myret = ft_printf("%p\n", p3);
-        printf("ret : %d\nmyret : %d\n\n", ret, myret);
+//        ret = printf("%p\n", p3);
+//        myret = ft_printf("%p\n", p3);
+//        printf("ret : %d\nmyret : %d\n\n", ret, myret);
 	
         ret = printf("%p\n", p4);
         myret = ft_printf("%p\n", p4);
         printf("ret : %d\nmyret : %d\n\n", ret, myret);
 
-        ret = printf("%p\n", p5);
-        myret = ft_printf("%p\n", p5);
-        printf("ret : %d\nmyret : %d\n\n", ret, myret);
-*/
+//        ret = printf("%p\n", p5);
+//        myret = ft_printf("%p\n", p5);
+//        printf("ret : %d\nmyret : %d\n\n", ret, myret);
+
 
         // %d
 /* 
@@ -277,11 +277,11 @@ int     main(void)
 */
 
 	// %smth avec smth non pris en charge par printf ou ft_printf
-
+/*
 	ret = printf("Hello %y\n");
 	myret = ft_printf("Hello %y\n");
         printf("ret : %d\nmyret : %d\n\n", ret, myret);
-
+*/
         return (0);
 }
 

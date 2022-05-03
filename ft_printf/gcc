@@ -1,0 +1,1 @@
+gcc ft_printf.c test.c ./sources/ft_decint_len_base.c ./sources/ft_int_len.c ./sources/ft_putnbr_base_fd.c ./sources/ft_putunbr_fd.c ./sources/ft_uint_len.c ./libft/ft_strlen.c ./libft/ft_putstr_fd.c ./libft/ft_putnbr_fd.c ./libft/ft_putchar_fd.c

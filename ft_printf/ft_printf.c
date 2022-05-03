@@ -34,12 +34,20 @@ int	ft_printf(const char *format, ...)
 			{
 				char	*str_value;
 				str_value = (char *)va_arg(to_print, char*);
-				write(1, str_value, ft_strlen(str_value));
-				nb_char_printed += ft_strlen(str_value);
+				if (!str_value)
+				{
+					write(1, "(null)", 6);
+					nb_char_printed += 6;
+				}
+				else
+				{
+					write(1, str_value, ft_strlen(str_value));
+					nb_char_printed += ft_strlen(str_value);
+				}
 			}
 
-
-/*			if (format[i] =='p')
+/*
+			if (format[i] =='p')
 			{
 				void	*ptr_value;
 				ptr_value = (void *)va_arg(to_print, void *);
@@ -52,15 +60,24 @@ int	ft_printf(const char *format, ...)
 					ft_putnbr_base_fd(var, "0123456789abcdef", 1);
 					j--;
 				}
+				nb_char_printed += 14;
 			}
-			*/
+*/
 			else if (format[i] == 'p')
 			{
-				uintptr_t	ptr_value;
-				ptr_value = (uintptr_t)va_arg(to_print, uintptr_t);
-				write(1, "0x", 2);
-				ft_putnbr_base_fd((long long int)ptr_value, "0123456789abcdef", 1);
-				nb_char_printed += 14;
+				long long unsigned	ptr_value;
+				ptr_value = (long long unsigned)va_arg(to_print, uintptr_t);
+				if (!ptr_value)
+				{
+					write(1, "(nil)", 5);
+					nb_char_printed += 5;
+				}
+				else
+				{
+					write(1, "0x", 2);
+					ft_putnbr_base_fd((long long unsigned)ptr_value, "0123456789abcdef", 1);
+					nb_char_printed += ft_decint_len_base(ptr_value, "0123456789abcdef") + 2;
+				}
 			}
 			
 
@@ -79,14 +96,14 @@ int	ft_printf(const char *format, ...)
 				unsigned int	uint_value;
 				uint_value = va_arg(to_print, unsigned int);
 				ft_putunbr_fd(uint_value, 1);
-				nb_char_printed += ft_uint_len(uint_value);
+				nb_char_printed += ft_decint_len_base(uint_value, "0123456789");
 			}
 			
 
 			else if (format[i] == 'x')
 			{
-				long long int	int_value2;
-				int_value2 = va_arg(to_print, long long int);
+				unsigned int	int_value2;
+				int_value2 = va_arg(to_print, unsigned int);
 				ft_putnbr_base_fd(int_value2, "0123456789abcdef", 1);
 				nb_char_printed += ft_decint_len_base(int_value2, "0123456789abcdef");
 			}
@@ -94,8 +111,8 @@ int	ft_printf(const char *format, ...)
 
 			else if (format[i] == 'X')
                         {
-                                long long int     int_value3;
-                                int_value3 = va_arg(to_print, long long int);
+                                unsigned int     int_value3;
+                                int_value3 = va_arg(to_print, unsigned int);
                                 ft_putnbr_base_fd(int_value3, "0123456789ABCDEF", 1);
 				nb_char_printed += ft_decint_len_base(int_value3, "0123456789ABCDEF");
                         }

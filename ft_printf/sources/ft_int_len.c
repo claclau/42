@@ -6,15 +6,15 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 14:39:54 by claclau           #+#    #+#             */
-/*   Updated: 2022/05/04 14:42:07 by claclau          ###   ########.fr       */
+/*   Updated: 2022/05/04 17:33:31 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 
-unsigned int	ft_int_len(int n)
+int	ft_int_len(int n)
 {
-	unsigned int	len;
+	int	len;
 
 	if (n == -2147483648)
 		return (11);

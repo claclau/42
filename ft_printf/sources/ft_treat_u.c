@@ -6,7 +6,7 @@
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 14:19:31 by claclau           #+#    #+#             */
-/*   Updated: 2022/05/04 14:21:18 by claclau          ###   ########.fr       */
+/*   Updated: 2022/05/04 15:58:26 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 int	ft_treat_u(unsigned int u)
 {
 	ft_putunbr_fd(u, 1);
-	return (ft_decint_len_base(u, "0123456789"));
+	return (ft_decuint_len_base(u, "0123456789"));
 }

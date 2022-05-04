@@ -5,13 +5,16 @@ SRCS = ft_printf.c \
        sources/ft_int_len.c \
        sources/ft_putnbr_base_fd.c \
        sources/ft_putunbr_fd.c \
+       sources/ft_is_format_ok.c \
+       sources/ft_treatment.c \
        sources/ft_treat_c.c \
        sources/ft_treat_s.c \
        sources/ft_treat_p.c \
        sources/ft_treat_d.c \
        sources/ft_treat_u.c \
        sources/ft_treat_x.c \
-       sources/ft_treat_X.c \
+       sources/ft_treat_xx.c \
+       sources/ft_putchar.c \
 
 OBJS = $(SRCS:.c=.o)
 

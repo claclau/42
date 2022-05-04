@@ -6,7 +6,7 @@
 #    By: claclau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 17:03:28 by claclau           #+#    #+#              #
-#    Updated: 2022/02/05 18:31:58 by claclau          ###   ########.fr        #
+#    Updated: 2022/02/05 19:17:37 by claclau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,3 +55,5 @@ so:
 
 norme:
 	norminette $(SRC) $(BONUS) $(INC)
+
+.PHONY: all clean fclean re bonus norme

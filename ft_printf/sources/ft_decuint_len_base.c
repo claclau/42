@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_decuint_len_base.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 14:35:30 by claclau           #+#    #+#             */
-/*   Updated: 2022/05/04 14:36:11 by claclau          ###   ########.fr       */
+/*   Created: 2022/05/04 14:33:43 by claclau           #+#    #+#             */
+/*   Updated: 2022/05/04 14:39:25 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 
-void	ft_putunbr_fd(unsigned int n, int fd)
+unsigned int	ft_decuint_len_base(long long unsigned int n, char *base)
 {
-	if (n >= 10)
+	unsigned int	len;
+	unsigned int	len_base;
+
+	len_base = ft_strlen(base);
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
 	{
-		ft_putunbr_fd(n / 10, fd);
-		ft_putunbr_fd(n % 10, fd);
+		n /= len_base;
+		len++;
 	}
-	if (n < 10)
-		ft_putchar_fd(n + 48, fd);
+	return (len);
 }

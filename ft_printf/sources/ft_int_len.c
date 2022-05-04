@@ -1,21 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_int_len.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 14:39:54 by claclau           #+#    #+#             */
+/*   Updated: 2022/05/04 14:42:07 by claclau          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../libft/libft.h"
 
-unsigned int    ft_int_len(int n)
+unsigned int	ft_int_len(int n)
 {
-        unsigned int    len;
+	unsigned int	len;
 
-        if (n == -2147483648)
-                return (11);
-        len = 0;
-        if (n <= 0)
-        {
-                n = -n;
-                len++;
-        }
-        while (n > 0)
-        {
-                n /= 10;
-                len++;
-        }
-        return (len);
+	if (n == -2147483648)
+		return (11);
+	len = 0;
+	if (n <= 0)
+	{
+		n = -n;
+		len++;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
 }

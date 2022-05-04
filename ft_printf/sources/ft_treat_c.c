@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_treat_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 14:35:30 by claclau           #+#    #+#             */
-/*   Updated: 2022/05/04 14:36:11 by claclau          ###   ########.fr       */
+/*   Created: 2022/05/04 13:35:02 by claclau           #+#    #+#             */
+/*   Updated: 2022/05/04 14:38:01 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include <unistd.h>
 
-void	ft_putunbr_fd(unsigned int n, int fd)
+int	ft_treat_c(char c)
 {
-	if (n >= 10)
-	{
-		ft_putunbr_fd(n / 10, fd);
-		ft_putunbr_fd(n % 10, fd);
-	}
-	if (n < 10)
-		ft_putchar_fd(n + 48, fd);
+	write(1, &c, 1);
+	return (1);
 }

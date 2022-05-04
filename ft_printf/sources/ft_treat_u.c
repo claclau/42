@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_treat_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claclau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 14:35:30 by claclau           #+#    #+#             */
-/*   Updated: 2022/05/04 14:36:11 by claclau          ###   ########.fr       */
+/*   Created: 2022/05/04 14:19:31 by claclau           #+#    #+#             */
+/*   Updated: 2022/05/04 14:21:18 by claclau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "../ft_printf.h"
 
-void	ft_putunbr_fd(unsigned int n, int fd)
+int	ft_treat_u(unsigned int u)
 {
-	if (n >= 10)
-	{
-		ft_putunbr_fd(n / 10, fd);
-		ft_putunbr_fd(n % 10, fd);
-	}
-	if (n < 10)
-		ft_putchar_fd(n + 48, fd);
+	ft_putunbr_fd(u, 1);
+	return (ft_decint_len_base(u, "0123456789"));
 }

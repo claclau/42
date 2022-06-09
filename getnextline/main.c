@@ -10,17 +10,19 @@
 int	main(void)
 {
 	int	fd;
-	int	i = 0;
+	char	*line;
 
-	while (i < 10)
+	fd = open("test", O_RDONLY);
+	
+	line = "";
+
+	while (line != NULL)
 	{
-		printf("\n\nTEST\n");
-		fd = open("./test", O_RDONLY);
-		printf("%s", get_next_line(fd));
-		close(fd);
-
-		i++;
+		line = get_next_line(fd);
+		printf("%s", line);
 	}
+
+	close(fd);
 
 	return (0);
 }

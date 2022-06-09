@@ -55,18 +55,6 @@ char    *ft_substr(char const *s, unsigned int start, size_t len)
         return (substr);
 }
 
-void    *ft_memset(void *s, int c, size_t n)
-{
-        while (n-- != 0)
-                ((char *)s)[n] = c;
-        return (s);
-}
-
-void    ft_bzero(void *s, size_t n)
-{
-        ft_memset(s, '\0', n);
-}
-
 char    *ft_strjoin(char const *s1, char const *s2)
 {
         size_t  len_s1;
@@ -110,5 +98,17 @@ char    *ft_strchr(const char *s, int c)
         if (c == '\0')
                 return ((char *)s + i);
         return (0);
+}
+
+void    *ft_memset(void *s, int c, size_t n)
+{
+        while (n-- != 0)
+                ((char *)s)[n] = c;
+        return (s);
+}
+
+void    ft_bzero(void *s, size_t n)
+{
+        ft_memset(s, '\0', n);
 }
 
